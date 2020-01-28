@@ -1,0 +1,41 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header class="header">
+            <mat-card-title>Edit Profile</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item style="height: 150px;">
+                    <form [formGroup]="editProfile" class="profile">
+                        <mat-form-field>
+                            <input type="text"  class="profile-field"
+                            [class.is-invalid] = "editProfile.get('firstName').invalid && editProfile.get('firstName').touched"
+                            matInput placeholder="FirstName" formControlName="firstName">
+                            <mat-error *ngIf="editProfile.get('firstName').errors?.required" >Name is required</mat-error>
+                            <mat-error *ngIf="editProfile.get('firstName').errors?.minlength">Name has to be atleast of 3 charecters</mat-error>
+                        </mat-form-field>        
+                        <mat-form-field>
+                        <input type="text" class="profile-field"
+                        [class.is-invalid] = "editProfile.get('details').invalid && editProfile.get('details').touched"
+                        matInput placeholder="Details" formControlName="details">
+                        <div *ngIf = "editProfile.get('details').invalid && editProfile.get('details').touched">
+                            <mat-error *ngIf="editProfile.get('details').errors?.required" class="text-danger">Details are required</mat-error>
+                            <mat-error *ngIf="editProfile.get('details').errors?.minlength" class="text-danger">details have to be atleast of 8 charecters</mat-error>
+                        </div>    
+                        </mat-form-field>
+                    </form>  
+                </mat-list-item>
+                <mat-list-item style="height: 100px;">
+                    <label> Upload ProfilePic: </label>
+                    <input (change)="onImagePicked($event)" placeholder="Upload Image" 
+                    type="file" />
+                    <button (click)="onImageUpload()"  mat-raised-button>Upload Image</button>
+                    <div *ngIf="message" class="warning"><p>{{message}}</p></div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-actions class="button">
+            <button [disabled]="editProfile.invalid"  (click)="uploadDetails()" mat-button>Update</button>
+        </mat-card-actions>     
+    </mat-card>
+</div>

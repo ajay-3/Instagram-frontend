@@ -1,0 +1,34 @@
+<mat-card class="container">
+    <mat-grid-list cols="2">
+        <mat-grid-tile [colspan]="1" >
+            <img src="{{imageUrl}}" alt= "Post Image" width="100%" height="100%" >
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" >
+            <mat-list class="block">
+                <mat-list-item class="profile">
+                    <img src="{{profileUrl}}" alt="profile Pic" width="50" height="50" >
+                    <h3>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; {{userName}}</h3>  
+                </mat-list-item>    
+                <mat-list-item>
+                   <p><strong>{{likesCount}} &nbsp;&nbsp; </strong>Likes</p> 
+                </mat-list-item>
+                <mat-list-item>
+                 <form [formGroup]="commentForm">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Add a comment" formControlName="comment"> 
+                    </mat-form-field>
+                 </form>
+                 <button (click)="submitComment()" mat-raised-button color="primary">Submit</button>
+                </mat-list-item >  
+                <div class="comments"> 
+                 <mat-list-item *ngIf="commented">
+                    <p><strong>{{userName}} :</strong> &nbsp;&nbsp; {{commentValue}}</p>  
+                 </mat-list-item>    
+                 <mat-list-item  *ngFor="let commentItem of comments">                   
+                    <p><strong>{{commentItem.userName}} :</strong> &nbsp;&nbsp; {{commentItem.comment}}</p>                  
+                 </mat-list-item>  
+                </div> 
+            </mat-list>                      
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

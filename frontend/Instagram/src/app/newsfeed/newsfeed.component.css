@@ -1,0 +1,11 @@
+.card{
+    position: relative;
+    left:30%;
+    max-width: 500px;
+    margin-bottom: 50px;
+    /* margin-left:100px ; */
+}
+
+.example-full-width{
+    width: 100%;
+}

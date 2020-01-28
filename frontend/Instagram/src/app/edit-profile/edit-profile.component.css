@@ -1,0 +1,37 @@
+body{
+    margin: 100px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+.mat-card{
+    padding: 0;
+}
+.mat-form-field{
+    display: block;
+}
+.header{
+  height: 50px;
+  background-color: lightslategrey;
+}
+.profile{
+    min-width: 150px;
+    width: 100%;
+}
+.profile-field{
+    width: 100%;
+}
+.button{
+    margin-bottom:40px;
+}
+
+.warning{
+    font-size:1em;
+    color:red;
+    width:400px;
+    height:30px;
+    margin:10px;
+    text-align: center;
+}

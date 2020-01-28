@@ -1,0 +1,42 @@
+<div class="form">
+<mat-card class="example-card">
+    <mat-card-header>                
+        <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content >
+        <mat-list>
+         <mat-list-item *ngIf="message" class="warning">
+                <p>{{message}}</p>
+         </mat-list-item>
+         <mat-list-item style="height: 100px;margin-top:20px">
+          <form [formGroup]="loginForm">
+            <mat-form-field  class="formInput">          
+                <input matInput type="text" 
+                [class.is-invalid] = "loginForm.get('Name').invalid && loginForm.get('Name').touched"
+                placeholder="username" formControlName="Name">
+                <mat-error *ngIf = "loginForm.get('Name').invalid && loginForm.get('Name').touched">
+                    <p *ngIf="loginForm.get('Name').errors?.required" class="text-danger">Name is required</p>
+                    <p *ngIf="loginForm.get('Name').errors?.minlength" class="text-danger">Name has to be atleast of 3 charecters</p>
+                </mat-error>    
+            </mat-form-field> 
+            <mat-form-field class="formInput">
+                <input matInput type="password" 
+                [class.is-invalid] = "loginForm.get('Password').invalid && loginForm.get('Password').touched"
+                placeholder="password" formControlName="Password">
+                <mat-error *ngIf = "loginForm.get('Password').invalid && loginForm.get('Password').touched">
+                    <p *ngIf="loginForm.get('Password').errors?.required" class="text-danger">Password is required</p>
+                    <p *ngIf="loginForm.get('Password').errors?.minlength" class="text-danger">Password has to be atleast of 8 charecters</p>
+                </mat-error>    
+            </mat-form-field>           
+          </form>
+         </mat-list-item>  
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+            <button [disabled]="loginForm.invalid"  (click)= "onSubmit()" mat-raised-button  color="primary">LogIn</button>
+    </mat-card-actions>
+ </mat-card>
+ <div class="panel panel-default">
+        <div class="panel-body"><p>New to Instagram ?<span><a routerLink = "/register">Create New Account</a></span></p></div>
+ </div>
+</div>

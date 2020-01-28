@@ -1,0 +1,37 @@
+<div class="container">
+    <mat-card>
+    <mat-card-header class="header">
+            <mat-card-title>Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile >
+                <img [src]="profileUrl" alt="Profile Picture" width="240" height="170" borderRadius="50%"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-list>
+                <mat-list-item>
+                    <h2>{{searchUserName}}</h2>                       
+                </mat-list-item> 
+                <mat-list-item>
+                    <h5>{{userDetails}}</h5>
+                </mat-list-item>
+                <mat-list-item>
+                    <h4>{{firstName}}</h4> 
+                </mat-list-item>
+                <mat-list-item>
+                    <p>{{followersCount}} &nbsp;&nbsp;&nbsp;&nbsp; Followers</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;{{followingCount}} &nbsp;&nbsp;&nbsp;&nbsp; Following</p> 
+                </mat-list-item>
+            </mat-list>
+            </mat-grid-tile>    
+            <mat-grid-tile >
+                <mat-list>
+                    <div *ngIf="!assigned" class="edit" ><button (click)="follow()" mat-raised-button color="primary">Follow</button></div>
+                    <div *ngIf="assigned" class="edit"><button (click)="unfollow()" mat-raised-button color="primary">UnFollow</button></div> 
+                </mat-list>  
+            </mat-grid-tile>
+            </mat-grid-list>
+    </mat-card-content>
+    </mat-card>
+</div>

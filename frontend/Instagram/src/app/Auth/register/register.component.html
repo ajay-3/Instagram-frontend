@@ -1,0 +1,38 @@
+<div class="form">
+    <mat-card class="example-card"> 
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+     <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngIf="message" class="warning">
+                   <p>{{message}}</p>
+            </mat-list-item>
+            <mat-list-item style="height: 100px;margin-top:20px">
+                <form [formGroup]="registrationForm"  >
+                    <mat-form-field  class="formInput">
+                        <input matInput type="text" 
+                        [class.is-invalid] = "registrationForm.get('Name').invalid && registrationForm.get('Name').touched"
+                        placeholder="username or email" formControlName="Name">
+                        <mat-error *ngIf = "registrationForm.get('Name').invalid && registrationForm.get('Name').touched">
+                         <p *ngIf="registrationForm.get('Name').errors?.required" class="text-danger">Name is required</p>
+                         <p *ngIf="registrationForm.get('Name').errors?.minlength" class="text-danger">Name has to be atleast of 3 charecters</p>
+                        </mat-error>    
+                    </mat-form-field> 
+                     <mat-form-field class="form-group">
+                        <input matInput type="password" 
+                        [class.is-invalid] = "registrationForm.get('Password').invalid && registrationForm.get('Password').touched"
+                         placeholder="password" formControlName="Password">
+                        <mat-error *ngIf = "registrationForm.get('Password').invalid && registrationForm.get('Password').touched">
+                            <p *ngIf="registrationForm.get('Password').errors?.required" class="text-danger">Password is required</p>
+                            <p *ngIf="registrationForm.get('Password').errors?.minlength" class="text-danger">Password has to be atleast of 8 charecters</p>
+                        </mat-error>    
+                    </mat-form-field>
+                </form>
+            </mat-list-item>
+        </mat-list>
+     </mat-card-content>
+    <mat-card-actions><button  (click)="register()" mat-raised-button color="primary">Register</button></mat-card-actions>       
+    </mat-card>
+    </div>
+

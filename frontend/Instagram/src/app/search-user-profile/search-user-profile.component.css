@@ -1,0 +1,22 @@
+.container{
+    width:80%;
+    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   }
+
+   .header{
+       width:100%;
+       background-color: lightslategrey;
+       height: 32px;
+   }
+  
+   .mat-card{
+       padding:0px;
+   }
+
+   .edit{
+       display: block;
+      position: absolute;
+       right: 50px;
+       top:70px;
+   }

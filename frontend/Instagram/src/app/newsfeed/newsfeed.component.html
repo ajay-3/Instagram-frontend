@@ -1,0 +1,35 @@
+ <mat-card *ngFor="let item of images;let i=index" class="card">
+    <mat-card-header style="height:100px;margin: 5px;">       
+        <img mat-card-avatar src="../assets/avatar2.png"  width="50" height="50" />
+        <mat-card-title>   {{item.userName}}</mat-card-title>             
+       <mat-divider></mat-divider>
+    </mat-card-header>
+    <img mat-card-image src="{{item.post.imageUrl}}" />
+    <mat-card-actions>
+        <button (click)="like(item,i)" id="{{'btn-'+ i}}" mat-button>Like</button>
+        <button (click)="comment(item,i)" mat-button>comment</button>
+    </mat-card-actions>    
+    <div *ngIf="commentBool">
+     <div *ngIf="commentIndex==i">
+     <form [formGroup]="commentForm">
+        <mat-grid-list cols="4" rowHeight="40px">
+            <mat-grid-tile [colspan]="3">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Comment" formControlName="comment"> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile><button (click)="submitComment(item)" mat-raised-button color="primary">Submit</button></mat-grid-tile>        
+        </mat-grid-list>
+     </form> 
+     </div>
+    </div>
+    <mat-list *ngIf="commentIndex==i">   
+        <mat-list-item *ngIf="commented">
+            <p><strong>{{userName}} :</strong> &nbsp;&nbsp; {{commentValue}}</p>
+        </mat-list-item>
+         <mat-list-item  *ngFor="let commentItem of comments">
+            <strong>{{commentItem.userName}} :</strong> &nbsp;&nbsp; {{commentItem.comment}}
+         </mat-list-item>
+    </mat-list>
+</mat-card>
+

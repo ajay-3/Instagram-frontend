@@ -1,0 +1,70 @@
+<div class="container">
+    <mat-card>
+    <mat-card-header class="header">
+            <mat-card-title>Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile >
+                <img [src]="profileUrl" alt="Profile Picture" width="240" height="170" borderRadius="50%"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-list>
+                <mat-list-item *ngIf="message" class="warning">
+                   <p>{{message}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2>{{userName}}</h2>                       
+                </mat-list-item> 
+                <mat-list-item>
+                    <h5>{{userDetails}}</h5>
+                </mat-list-item>
+                <mat-list-item>
+                    <h4>{{firstName}}</h4> 
+                </mat-list-item>
+                <mat-list-item>
+                    <p>{{postsCount}} &nbsp;&nbsp;&nbsp;&nbsp;Posts</p>  
+                </mat-list-item>
+                <mat-list-item>
+                    <p>{{followersCount}}&nbsp;&nbsp;&nbsp;&nbsp;Followers</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;{{followingCount}}&nbsp;&nbsp;&nbsp;&nbsp;Following</p> 
+                </mat-list-item>
+            </mat-list>
+            </mat-grid-tile>    
+            <mat-grid-tile >
+                <mat-list>
+                    <button  routerLink="/edit-profile" class="edit" mat-raised-button color="primary">Edit Profile</button>
+                </mat-list>
+                <mat-list>
+                    <mat-list-item><input (change)="onImagePicked($event)" placeholder="Upload Image" type="file" /></mat-list-item>
+                    <mat-list-item><button (click)="onImageUpload()" mat-raised-button color="primary">Upload Image</button></mat-list-item>
+                    <mat-list-item *ngIf="uploadMessage" class="warning"><p>{{uploadMessage}}</p></mat-list-item>
+                </mat-list>    
+            </mat-grid-tile>
+            </mat-grid-list>
+    </mat-card-content>
+    </mat-card>
+ 
+ <mat-divider></mat-divider>
+ <div class="posts">
+    <mat-card > 
+        <mat-card-header class="header">
+            <mat-card-title>Posts</mat-card-title>
+        </mat-card-header>
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <div *ngFor="let item of images">
+        <mat-grid-tile>        
+            <mat-card (click)="openPost(item)">
+             <img src="{{item.imageUrl}}" width="240" height="240"/>
+             <mat-card-actions>
+                   <span> <button mat-button> {{item.Likes}}&nbsp;&nbsp;&nbsp;&nbsp;Likes</button></span>
+            </mat-card-actions>
+            </mat-card>       
+        </mat-grid-tile>
+        </div>
+    </mat-grid-list>
+    </mat-card>
+ </div>
+</div>
+
+
